@@ -14,8 +14,7 @@ class PkpScraper:
     def __init__(self, carriers_names: List[str]):
         self.carriers_names = carriers_names
         self.nodes: Set[str] = set()
-        self.nodes_with_ids: Dict[str, int] = {}
-        self.edges: Set[Tuple[str, str]] = set()
+        self.edges: Dict[Tuple[str, str], int] = {}
         self.verbose = False
 
     def scrape(self, verbose=False):
@@ -76,7 +75,10 @@ class PkpScraper:
 
     def create_edges_from_route(self, route: List[str]):
         new_edges = list(zip(route[:-1], route[1:]))
-        self.edges.update(new_edges)
+        for edge in new_edges:
+            if edge not in self.edges:
+                self.edges[edge] = 0
+            self.edges[edge] += 1
 
     def save(self, filename: str):
         sorted_nodes = sorted(list(self.nodes))
@@ -85,11 +87,12 @@ class PkpScraper:
             f.write("id,name\n")
             for id, name in ids_nodes.items():
                 f.write(f"{id},{name}\n")
-        sorted_edges = sorted(list(self.edges))
+        sorted_edges = sorted(list(self.edges.items()))
+        print(sorted_edges)
         with open(f"{filename}.edges", 'wt+') as f:
-            f.write("source,target\n")
-            for source, destination in sorted_edges:
-                f.write(f"{nodes_ids[source]},{nodes_ids[destination]}\n")
+            f.write("source,target,weight\n")
+            for (source, destination), weight in sorted_edges:
+                f.write(f"{nodes_ids[source]},{nodes_ids[destination]},{weight}\n")
 
     def prepare_node_ids(self, sorted_nodes: List[str]) -> Tuple[Dict[int, str], Dict[str, int]]:
         ids_into_nodes = {}
@@ -102,10 +105,10 @@ class PkpScraper:
 
 if __name__ == '__main__':
     carriers = [
-        'pkp-intercity-spółka-akcyjna',
+        # 'pkp-intercity-spółka-akcyjna',
         # 'koleje-dolnośląskie',
         # 'koleje-mazowieckie-km',
-        # 'koleje-małopolskie',
+        'koleje-małopolskie',
         # 'koleje-śląskie',
         # 'koleje-wielkopolskie',
         # 'polregio'
@@ -113,4 +116,4 @@ if __name__ == '__main__':
     scraper = PkpScraper(carriers)
     scraper.scrape(verbose=True)
     print(scraper.nodes)
-    scraper.save("results")
+    scraper.save("results2")
