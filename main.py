@@ -89,7 +89,7 @@ class PkpScraper:
         with open(f"{filename}.edges", 'wt+') as f:
             f.write("source,target\n")
             for source, destination in sorted_edges:
-                f.write(f"{nodes_ids[source]}, {nodes_ids[destination]}\n")
+                f.write(f"{nodes_ids[source]},{nodes_ids[destination]}\n")
 
     def prepare_node_ids(self, sorted_nodes: List[str]) -> Tuple[Dict[int, str], Dict[str, int]]:
         ids_into_nodes = {}
