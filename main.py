@@ -105,10 +105,10 @@ class PkpScraper:
 
 if __name__ == '__main__':
     carriers = [
-        # 'pkp-intercity-spółka-akcyjna',
+        'pkp-intercity-spółka-akcyjna',
         # 'koleje-dolnośląskie',
         # 'koleje-mazowieckie-km',
-        'koleje-małopolskie',
+        # 'koleje-małopolskie',
         # 'koleje-śląskie',
         # 'koleje-wielkopolskie',
         # 'polregio'
@@ -116,4 +116,4 @@ if __name__ == '__main__':
     scraper = PkpScraper(carriers)
     scraper.scrape(verbose=True)
     print(scraper.nodes)
-    scraper.save("results2")
+    scraper.save("ic")
