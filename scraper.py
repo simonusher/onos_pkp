@@ -4,12 +4,13 @@ from typing import List, Set, Tuple, Dict
 import functools
 import operator
 import re
+import click
 
 
 class PkpScraper:
-    MAIN_PAGE = 'https://portalpasazera.pl'
-    MAIN_PAGE_CATALOG = MAIN_PAGE + '/KatalogPolaczen?przewoznik='
-    PAGE_NUMBER_MODIFIER = '&p='
+    MAIN_PAGE = "https://portalpasazera.pl"
+    MAIN_PAGE_CATALOG = MAIN_PAGE + "/KatalogPolaczen?przewoznik="
+    PAGE_NUMBER_MODIFIER = "&p="
 
     def __init__(self, carriers_names: List[str]):
         self.carriers_names = carriers_names
@@ -27,7 +28,7 @@ class PkpScraper:
             print(f"Scraping: {carrier_name}")
         main_url = PkpScraper.MAIN_PAGE_CATALOG + carrier_name
         main_page = requests.get(main_url)
-        soup = BeautifulSoup(main_page.content, 'html.parser')
+        soup = BeautifulSoup(main_page.content, "html.parser")
         last_page_number = self.get_num_pages_from_pagination(soup)
         for page_number in range(1, last_page_number + 1):
             if self.verbose:
@@ -35,33 +36,40 @@ class PkpScraper:
             self.scrape_subpage(main_url, page_number)
 
     def get_num_pages_from_pagination(self, soup: BeautifulSoup):
-        pagination = soup.find(attrs={'class': 'pagination'})
+        pagination = soup.find(attrs={"class": "pagination"})
         num_pages_tag = list(pagination.children)[-4]
-        a_tag = num_pages_tag.find(name='a')
+        a_tag = num_pages_tag.find(name="a")
         num_pages = int(a_tag.text)
         return num_pages
 
     def scrape_subpage(self, main_url: str, page_number: int):
         page_url = main_url + PkpScraper.PAGE_NUMBER_MODIFIER + str(page_number)
         page = requests.get(page_url)
-        soup = BeautifulSoup(page.content, 'html.parser')
+        soup = BeautifulSoup(page.content, "html.parser")
         route_links = self.get_route_list(soup)
         for route_url in route_links:
             self.scrape_one_route_page(route_url)
 
     def get_route_list(self, soup: BeautifulSoup):
-        links = soup.find_all(name='a', attrs={'class': 'loadScr'},
-                              href=lambda href: href and re.compile("trasa").search(href))
-        links = [PkpScraper.MAIN_PAGE + l['href'] for l in links]
+        links = soup.find_all(
+            name="a",
+            attrs={"class": "loadScr"},
+            href=lambda href: href and re.compile("trasa").search(href),
+        )
+        links = [PkpScraper.MAIN_PAGE + l["href"] for l in links]
         return links
 
     def scrape_one_route_page(self, route_url: str):
         page = requests.get(route_url)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        all_routes = soup.find_all(name='strong', attrs={'class': 'item-value'})
+        soup = BeautifulSoup(page.content, "html.parser")
+        all_routes = soup.find_all(name="strong", attrs={"class": "item-value"})
         stations_on_routes = [
-            [station.text for station in route.find_all(name='span', attrs={'lang': 'pl-PL'})]
-            for route in all_routes]
+            [
+                station.text
+                for station in route.find_all(name="span", attrs={"lang": "pl-PL"})
+            ]
+            for route in all_routes
+        ]
         self.create_nodes(stations_on_routes)
         self.create_edges(stations_on_routes)
 
@@ -83,18 +91,20 @@ class PkpScraper:
     def save(self, filename: str):
         sorted_nodes = sorted(list(self.nodes))
         ids_nodes, nodes_ids = self.prepare_node_ids(sorted_nodes)
-        with open(f"{filename}.nodes", "wt+") as f:
+        with open(f"{filename}.nodes", "wt+", encoding="utf-8") as f:
             f.write("id,name\n")
             for id, name in ids_nodes.items():
                 f.write(f"{id},{name}\n")
         sorted_edges = sorted(list(self.edges.items()))
         print(sorted_edges)
-        with open(f"{filename}.edges", 'wt+') as f:
+        with open(f"{filename}.edges", "wt+", encoding="utf-8") as f:
             f.write("source,target,weight\n")
             for (source, destination), weight in sorted_edges:
                 f.write(f"{nodes_ids[source]},{nodes_ids[destination]},{weight}\n")
 
-    def prepare_node_ids(self, sorted_nodes: List[str]) -> Tuple[Dict[int, str], Dict[str, int]]:
+    def prepare_node_ids(
+        self, sorted_nodes: List[str]
+    ) -> Tuple[Dict[int, str], Dict[str, int]]:
         ids_into_nodes = {}
         reversed_nodes = {}
         for i, name in enumerate(sorted_nodes):
@@ -103,17 +113,31 @@ class PkpScraper:
         return ids_into_nodes, reversed_nodes
 
 
-if __name__ == '__main__':
-    carriers = [
-        'pkp-intercity-spółka-akcyjna',
-        # 'koleje-dolnośląskie',
-        # 'koleje-mazowieckie-km',
-        # 'koleje-małopolskie',
-        # 'koleje-śląskie',
-        # 'koleje-wielkopolskie',
-        # 'polregio'
-    ]
+@click.command()
+@click.argument(
+    "carriers",
+    required=True,
+    nargs=-1,
+    type=click.Choice(
+        [
+            "pkp-intercity-spółka-akcyjna",
+            "koleje-dolnośląskie",
+            "koleje-mazowieckie-km",
+            "koleje-małopolskie",
+            "koleje-śląskie",
+            "koleje-wielkopolskie",
+            "polregio",
+        ],
+        case_sensitive=False,
+    ),
+)
+@click.option("-d", "--destination", default="results", type=click.Path(exists=False, dir_okay=False, writable=True), help="Destination file path.")
+def scrape(carriers: List[str], destination: str):
+    print(type(carriers))
     scraper = PkpScraper(carriers)
     scraper.scrape(verbose=True)
-    print(scraper.nodes)
-    scraper.save("ic")
+    scraper.save(destination)
+
+
+if __name__ == '__main__':
+    scrape()
