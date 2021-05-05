@@ -125,15 +125,15 @@ Project Link: [https://github.com/simonusher/onos_pkp](https://github.com/simonu
 
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/simonusher/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/simonusher/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/simonusher/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/simonusher/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/simonusher/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/simonusher/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/simonusher/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/simonusher/repo/issues
-[license-shield]: https://img.shields.io/github/license/simonusher/repo.svg?style=for-the-badge
-[license-url]: https://github.com/simonusher/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/simonusher/onos_pkp.svg?style=for-the-badge
+[contributors-url]: https://github.com/simonusher/onos_pkp/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/simonusher/onos_pkp.svg?style=for-the-badge
+[forks-url]: https://github.com/simonusher/onos_pkp/network/members
+[stars-shield]: https://img.shields.io/github/stars/simonusher/onos_pkp.svg?style=for-the-badge
+[stars-url]: https://github.com/simonusher/onos_pkp/stargazers
+[issues-shield]: https://img.shields.io/github/issues/simonusher/onos_pkp.svg?style=for-the-badge
+[issues-url]: https://github.com/simonusher/onos_pkp/issues
+[license-shield]: https://img.shields.io/github/license/simonusher/onos_pkp.svg?style=for-the-badge
+[license-url]: https://github.com/simonusher/onos_pkp/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/szymon-wo%C5%BAniak-00505318a/
