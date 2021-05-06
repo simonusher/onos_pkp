@@ -10,8 +10,10 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
+  <a href="https://github.com/simonusher/onos_pkp">
+    <img src="images/logo.png" alt="Logo" width="500" height="318">
+  </a>
   <h3 align="center">PKP network scraping and analysis</h3>
-
   <p align="center">
     A railway connections (Polskie Koleje Państwowe) network scraper with simple Folium visualizations. Created as part of network science course on WrUST.
     <br />
