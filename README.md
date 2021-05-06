@@ -10,17 +10,17 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/simonusher/onos_pkp">
+  <a href="https://github.com/simonusher/pkp_network_science">
     <img src="images/logo.png" alt="Logo" width="500" height="318">
   </a>
   <h3 align="center">PKP network scraping and analysis</h3>
   <p align="center">
     A railway connections (Polskie Koleje Państwowe) network scraper with simple Folium visualizations. Created as part of network science course on WrUST.
     <br />
-    <!-- <a href="https://github.com/simonusher/onos_pkp"><strong>Explore the docs »</strong></a> -->
-    <a href="https://github.com/simonusher/onos_pkp/issues">Report Bug</a>
+    <!-- <a href="https://github.com/simonusher/pkp_network_science"><strong>Explore the docs »</strong></a> -->
+    <a href="https://github.com/simonusher/pkp_network_science/issues">Report Bug</a>
     ·
-    <a href="https://github.com/simonusher/onos_pkp/issues">Request Feature</a>
+    <a href="https://github.com/simonusher/pkp_network_science/issues">Request Feature</a>
   </p>
 </p>
 
@@ -82,7 +82,7 @@ If you have pyenv, you can install this version using:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/simonusher/onos_pkp.git
+   git clone https://github.com/simonusher/pkp_network_science.git
    ```
 2. Create a virtual environment and activate it (optional):
    ```sh
@@ -123,19 +123,19 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Szymon Woźniak - swozniak6@gmail.com
 
-Project Link: [https://github.com/simonusher/onos_pkp](https://github.com/simonusher/onos_pkp)
+Project Link: [https://github.com/simonusher/pkp_network_science](https://github.com/simonusher/pkp_network_science)
 
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/simonusher/onos_pkp.svg?style=for-the-badge
-[contributors-url]: https://github.com/simonusher/onos_pkp/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/simonusher/onos_pkp.svg?style=for-the-badge
-[forks-url]: https://github.com/simonusher/onos_pkp/network/members
-[stars-shield]: https://img.shields.io/github/stars/simonusher/onos_pkp.svg?style=for-the-badge
-[stars-url]: https://github.com/simonusher/onos_pkp/stargazers
-[issues-shield]: https://img.shields.io/github/issues/simonusher/onos_pkp.svg?style=for-the-badge
-[issues-url]: https://github.com/simonusher/onos_pkp/issues
-[license-shield]: https://img.shields.io/github/license/simonusher/onos_pkp.svg?style=for-the-badge
-[license-url]: https://github.com/simonusher/onos_pkp/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/simonusher/pkp_network_science.svg?style=for-the-badge
+[contributors-url]: https://github.com/simonusher/pkp_network_science/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/simonusher/pkp_network_science.svg?style=for-the-badge
+[forks-url]: https://github.com/simonusher/pkp_network_science/network/members
+[stars-shield]: https://img.shields.io/github/stars/simonusher/pkp_network_science.svg?style=for-the-badge
+[stars-url]: https://github.com/simonusher/pkp_network_science/stargazers
+[issues-shield]: https://img.shields.io/github/issues/simonusher/pkp_network_science.svg?style=for-the-badge
+[issues-url]: https://github.com/simonusher/pkp_network_science/issues
+[license-shield]: https://img.shields.io/github/license/simonusher/pkp_network_science.svg?style=for-the-badge
+[license-url]: https://github.com/simonusher/pkp_network_science/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/szymon-wo%C5%BAniak-00505318a/
