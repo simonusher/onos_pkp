@@ -17,7 +17,7 @@
   <p align="center">
     A railway connections (Polskie Koleje Państwowe) network scraper with simple Folium visualizations. Created as part of network science course on WrUST.
     <br />
-    <a href="https://github.com/simonusher/onos_pkp"><strong>Explore the docs »</strong></a>
+    <!-- <a href="https://github.com/simonusher/onos_pkp"><strong>Explore the docs »</strong></a> -->
     <a href="https://github.com/simonusher/onos_pkp/issues">Report Bug</a>
     ·
     <a href="https://github.com/simonusher/onos_pkp/issues">Request Feature</a>
