@@ -2,7 +2,7 @@ beautifulsoup4==4.8.2
 folium==0.10.1
 geopy==1.21.0
 jupyter==1.0.0
-numpy==1.18.2
+numpy==1.22.0
 pandas==1.0.3
 tqdm==4.44.1
 click==7.1.2
